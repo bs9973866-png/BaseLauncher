@@ -3,113 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
-<title>Base Launcher</title>
+<title>NOVA Launcher</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <aside class="side">
-  <div class="brand"><span class="logo"></span><b>BASE</b><i>LAUNCHER</i></div>
+  <div class="brand"><span class="logo"></span><div><b>NOVA</b><i>LAUNCHER</i></div></div>
+  <div class="brand-sub">MINECRAFT HUB</div>
   <nav>
-    <button data-page="play" class="active">▶ Играть</button>
-    <button data-page="mods">⬇ Моды</button>
-    <button data-page="account">☺ Аккаунты</button>
-    <button data-page="settings">⚙ Настройки</button>
+    <button data-page="play" class="active"><span>▶</span> Играть</button>
+    <button data-page="mods"><span>✦</span> Моды</button>
+    <button data-page="account"><span>◉</span> Аккаунты</button>
+    <button data-page="settings"><span>⚙</span> Настройки</button>
   </nav>
+  <div class="side-footer"><div class="online-dot"></div><span>Система готова</span></div>
   <div class="who" id="who">Нет аккаунта</div>
 </aside>
 
 <main>
-  <!-- PLAY -->
   <section id="page-play" class="page active">
-    <h1>Сборки</h1>
-    <div class="row">
-      <select id="instSelect"></select>
-      <button class="ghost" id="btnOpenInst">Папка</button>
-      <button class="ghost danger" id="btnDelInst">Удалить</button>
-    </div>
-
-    <div class="card">
-      <h3>Новая сборка</h3>
+    <div class="hero"><div><div class="eyebrow">MINECRAFT</div><h1>Твои миры.</h1><p>Все версии Minecraft в одном месте.</p></div><div class="hero-orb"></div></div>
+    <div class="section-head"><h2>Сборки</h2><div class="row compact"><select id="instSelect"></select><button class="ghost" id="btnOpenInst">Папка</button><button class="ghost danger" id="btnDelInst">Удалить</button></div></div>
+    <div class="card create-card">
+      <div class="card-title"><span>＋</span><div><h3>Новая сборка</h3><small>Создай чистый профиль под любую версию</small></div></div>
       <div class="row">
-        <input id="newName" placeholder="Название">
-        <select id="newType">
-          <option value="release">Релизы</option>
-          <option value="snapshot">Снапшоты</option>
-          <option value="old_beta">Old beta</option>
-          <option value="old_alpha">Old alpha</option>
-          <option value="all">Все версии</option>
-        </select>
+        <input id="newName" placeholder="Название сборки">
+        <select id="newType"><option value="release">Релизы</option><option value="snapshot">Снапшоты</option><option value="old_beta">Old beta</option><option value="old_alpha">Old alpha</option><option value="all">Все версии</option></select>
         <select id="newVersion"></select>
-        <select id="newLoader">
-          <option value="vanilla">Vanilla</option>
-          <option value="fabric">Fabric</option>
-        </select>
-        <button id="btnCreate">Создать</button>
+        <select id="newLoader"><option value="vanilla">Vanilla</option><option value="fabric">Fabric</option></select>
+        <button id="btnCreate">Создать сборку</button>
       </div>
     </div>
-
-    <div class="play-bar">
-      <div class="status"><div id="statusText">Готов к запуску</div><div class="bar"><div id="barFill"></div></div></div>
-      <button class="big" id="btnPlay">ИГРАТЬ</button>
-      <button class="ghost danger" id="btnKill" hidden>Стоп</button>
-    </div>
+    <div class="play-bar"><div class="status"><div class="status-label">СТАТУС</div><div id="statusText">Готов к запуску</div><div class="bar"><div id="barFill"></div></div></div><button class="big" id="btnPlay">ИГРАТЬ <span>→</span></button><button class="ghost danger" id="btnKill" hidden>Стоп</button></div>
     <pre id="log"></pre>
   </section>
 
-  <!-- MODS -->
   <section id="page-mods" class="page">
-    <h1>Моды</h1>
-    <div class="row">
-      <select id="modSource">
-        <option value="modrinth">Modrinth</option>
-        <option value="curseforge">CurseForge</option>
-      </select>
-      <select id="modKind">
-        <option value="mod">Моды</option>
-        <option value="resourcepack">Ресурспаки</option>
-        <option value="shader">Шейдеры</option>
-      </select>
-      <input id="modQuery" placeholder="Поиск…" class="grow">
-      <button id="btnSearch">Найти</button>
-    </div>
-    <div class="hint" id="modHint"></div>
-    <div id="modList" class="list"></div>
+    <div class="eyebrow">CONTENT HUB</div><h1>Моды и контент</h1><p class="lead">Ищи и устанавливай контент прямо в выбранную сборку.</p>
+    <div class="filter-bar"><select id="modSource"><option value="modrinth">Modrinth</option><option value="curseforge">CurseForge</option></select><select id="modKind"><option value="mod">Моды</option><option value="resourcepack">Ресурспаки</option><option value="shader">Шейдеры</option></select><input id="modQuery" placeholder="Поиск модов…" class="grow"><button id="btnSearch">Найти</button></div>
+    <div class="hint" id="modHint"></div><div id="modList" class="list"></div>
   </section>
 
-  <!-- ACCOUNTS -->
   <section id="page-account" class="page">
-    <h1>Аккаунты</h1>
-    <div class="card">
-      <h3>Вход через Ely.by</h3>
-      <div class="row">
-        <input id="elyLogin" placeholder="Ник или e-mail">
-        <input id="elyPass" type="password" placeholder="Пароль">
-      </div>
-      <div class="row" id="rowTotp" hidden>
-        <input id="elyTotp" placeholder="Код двухфакторной защиты">
-      </div>
-      <div class="row"><button id="btnEly">Войти</button><span id="elyMsg" class="msg"></span></div>
-    </div>
-    <div class="card">
-      <h3>Оффлайн-ник</h3>
-      <div class="row"><input id="offName" placeholder="Ник"><button class="ghost" id="btnOff">Добавить</button></div>
-    </div>
-    <div id="accList" class="list"></div>
+    <div class="eyebrow">PROFILE</div><h1>Аккаунты</h1><p class="lead">Ely.by или локальный оффлайн-профиль.</p>
+    <div class="card"><div class="card-title"><span>◉</span><div><h3>Ely.by</h3><small>Авторизация напрямую через Ely.by</small></div></div><div class="row"><input id="elyLogin" placeholder="Ник или e-mail"><input id="elyPass" type="password" placeholder="Пароль"></div><div class="row" id="rowTotp" hidden><input id="elyTotp" placeholder="Код двухфакторной защиты"></div><div class="row"><button id="btnEly">Войти через Ely.by</button><span id="elyMsg" class="msg"></span></div></div>
+    <div class="card"><h3>Оффлайн-профиль</h3><div class="row"><input id="offName" placeholder="Ник"><button class="ghost" id="btnOff">Добавить</button></div></div><div id="accList" class="list"></div>
   </section>
 
-  <!-- SETTINGS -->
   <section id="page-settings" class="page">
-    <h1>Настройки</h1>
-    <div class="card">
-      <label>Оперативная память: <b id="ramVal"></b> МБ</label>
-      <input type="range" id="ram" min="1024" max="16384" step="512">
-      <label>Путь к Java (пусто — скачать автоматически)</label>
-      <input id="javaPath" placeholder="C:\Program Files\Java\...\bin\javaw.exe">
-      <label>API-ключ CurseForge (бесплатно на console.curseforge.com)</label>
-      <input id="cfKey" type="password" placeholder="$2a$10$…">
-      <div class="row"><button id="btnSave">Сохранить</button><button class="ghost" id="btnOpenData">Открыть папку данных</button><span id="saveMsg" class="msg"></span></div>
-    </div>
-  </section>
+    <div class="eyebrow">SYSTEM</div><h1>Настройки</h1><div class="card"><label>Оперативная память: <b id="ramVal"></b> МБ</label><input type="range" id="ram" min="1024" max="16384" step="512"><label>Путь к Java (пусто — скачать автоматически)</label><input id="javaPath" placeholder="C:\\Program Files\\Java\\...\\bin\\javaw.exe"><label>API-ключ CurseForge</label><input id="cfKey" type="password" placeholder="$2a$10$…"><div class="row"><button id="btnSave">Сохранить</button><button class="ghost" id="btnOpenData">Открыть папку данных</button><span id="saveMsg" class="msg"></span></div></div></section>
 </main>
 <script src="app.js"></script>
 </body>
