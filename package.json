@@ -1,10 +1,10 @@
 {
-  "name": "base-launcher",
-  "productName": "Base Launcher",
+  "name": "nova-minecraft-launcher",
+  "productName": "NOVA Launcher",
   "version": "1.0.0",
-  "description": "Minecraft launcher with Ely.by, Modrinth and CurseForge support",
+  "description": "Modern Minecraft launcher with Ely.by, Modrinth and CurseForge support",
   "main": "src/main.js",
-  "author": "Base Launcher",
+  "author": "NOVA Launcher",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
@@ -19,8 +19,8 @@
     "electron-builder": "^25.1.8"
   },
   "build": {
-    "appId": "com.base.launcher",
-    "productName": "Base Launcher",
+    "appId": "com.nova.minecraftlauncher",
+    "productName": "NOVA Launcher",
     "directories": {
       "output": "dist"
     },
@@ -30,14 +30,7 @@
       "package.json"
     ],
     "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
       "icon": "build/icon.ico"
     },
     "nsis": {
@@ -46,11 +39,11 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Base Launcher",
+      "shortcutName": "NOVA Launcher",
       "installerIcon": "build/icon.ico",
       "uninstallerIcon": "build/icon.ico",
       "installerHeaderIcon": "build/icon.ico",
-      "artifactName": "BaseLauncher-Setup-${version}.exe"
+      "artifactName": "NOVA-Launcher-Setup-${version}.exe"
     }
   }
 }
